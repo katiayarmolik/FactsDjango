@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>🧠 Рандомний факт</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #f6f8fa; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 60px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; text-align: center; }
+        h1 { color: #2d3748; font-size: 2.2em; margin-bottom: 24px; }
+        .fact { font-size: 1.3em; color: #4a5568; margin-bottom: 32px; }
+        .category { display: inline-block; background: #e2e8f0; color: #2b6cb0; border-radius: 8px; padding: 6px 16px; font-size: 1em; margin-bottom: 16px; }
+        a { color: #3182ce; text-decoration: none; margin: 0 10px; }
+        a:hover { text-decoration: underline; }
+        nav { text-align: right; margin-bottom: 24px; }
+        .dropdown { display: inline-block; position: relative; }
+        .dropbtn {
+            background: #3182ce;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .dropbtn:hover, .dropbtn:focus { background: #2563eb; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 10px;
+            z-index: 1;
+            margin-top: 8px;
+        }
+        .dropdown-content a {
+            color: #2d3748;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: #ebf8ff; color: #2b6cb0; }
+        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Меню &#9662;</button>
+            <div class="dropdown-content">
+                <a href="/">Головна</a>
+                <a href="/facts/random/">Рандомний факт</a>
+                <a href="/facts/categories/">Категорії</a>
+                <a href="/facts/add/">Додати факт</a>
+                <a href="/facts/add-category/">Додати категорію</a>
+                <a href="/facts/saved/">Збережені факти</a>
+            </div>
+        </div>
+    </nav>
+    <h1>🧠 Рандомний факт</h1>
+    {% if fact %}
+        <div class="fact">{{ fact.text }}</div>
+        <div class="category">Категорія: {{ fact.category.name }}</div>
+    {% else %}
+        <div class="fact">Фактів ще немає.</div>
+    {% endif %}
+    <div style="margin-top: 32px;">
+        <a href="/facts/random/">Ще факт</a> |
+        <a href="/facts/categories/">Категорії</a> |
+        <a href="/facts/saved/">Збережені факти</a>
+    </div>
+</div>
+</body>
+</html> 

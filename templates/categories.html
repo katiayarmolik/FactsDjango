@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>📚 Категорії фактів</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <style>
+        body { background: #f6f8fa; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 60px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; text-align: center; }
+        h1 { color: #2d3748; font-size: 2.2em; margin-bottom: 24px; }
+        ul { list-style: none; padding: 0; }
+        li { background: #e2e8f0; margin: 12px 0; padding: 16px; border-radius: 8px; font-size: 1.1em; color: #2b6cb0; }
+        a { color: #3182ce; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .nav { margin-top: 32px; }
+        nav { text-align: right; margin-bottom: 24px; }
+        .dropdown { display: inline-block; position: relative; }
+        .dropbtn {
+            background: #3182ce;
+            color: #fff;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .dropbtn:hover, .dropbtn:focus { background: #2563eb; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: #fff;
+            min-width: 220px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 10px;
+            z-index: 1;
+            margin-top: 8px;
+        }
+        .dropdown-content a {
+            color: #2d3748;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #e2e8f0;
+            transition: background 0.2s;
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background: #ebf8ff; color: #2b6cb0; }
+        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📚 Категорії фактів</h1>
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+                <li>{{ category.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div>Категорій ще немає.</div>
+    {% endif %}
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Меню &#9662;</button>
+            <div class="dropdown-content">
+                <a href="/">Головна</a>
+                <a href="/facts/random/">Рандомний факт</a>
+                <a href="/facts/categories/">Категорії</a>
+                <a href="/facts/add/">Додати факт</a>
+                <a href="/facts/add-category/">Додати категорію</a>
+                <a href="/facts/saved/">Збережені факти</a>
+            </div>
+        </div>
+    </nav>
+</div>
+</body>
+</html> 
