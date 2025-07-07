@@ -4,69 +4,10 @@
     <meta charset="UTF-8">
     <title>💾 Збережені факти</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-    <style>
-        body { background: #f6f8fa; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
-        .container { max-width: 700px; margin: 60px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; text-align: center; }
-        h1 { color: #2d3748; font-size: 2.2em; margin-bottom: 24px; }
-        .fact-block { background: #e2e8f0; border-radius: 10px; padding: 18px 24px; margin: 18px 0; text-align: left; }
-        .fact-text { font-size: 1.15em; color: #4a5568; }
-        .fact-date { font-size: 0.95em; color: #718096; margin-top: 6px; }
-        .empty { color: #a0aec0; font-size: 1.1em; margin: 32px 0; }
-        a { color: #3182ce; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .nav { margin-top: 32px; }
-        nav { text-align: right; margin-bottom: 24px; }
-        .dropdown { display: inline-block; position: relative; }
-        .dropbtn {
-            background: #3182ce;
-            color: #fff;
-            padding: 12px 24px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .dropbtn:hover, .dropbtn:focus { background: #2563eb; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: #fff;
-            min-width: 220px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            border-radius: 10px;
-            z-index: 1;
-            margin-top: 8px;
-        }
-        .dropdown-content a {
-            color: #2d3748;
-            padding: 14px 20px;
-            text-decoration: none;
-            display: block;
-            border-bottom: 1px solid #e2e8f0;
-            transition: background 0.2s;
-        }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background: #ebf8ff; color: #2b6cb0; }
-        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>💾 Збережені факти</h1>
-    {% if saved_facts %}
-        {% for saved in saved_facts %}
-            <div class="fact-block">
-                <div class="fact-text">{{ saved.fact.text }}</div>
-                <div class="fact-date">Збережено: {{ saved.saved_at|date:"d.m.Y H:i" }}</div>
-            </div>
-        {% endfor %}
-    {% else %}
-        <div class="empty">Ви ще не зберігали жодного факту.</div>
-    {% endif %}
     <nav>
         <div class="dropdown">
             <button class="dropbtn">Меню &#9662;</button>
@@ -80,6 +21,17 @@
             </div>
         </div>
     </nav>
+    <h1>💾 Збережені факти</h1>
+    {% if saved_facts %}
+        {% for saved in saved_facts %}
+            <div class="fact-block">
+                <div class="fact-text">{{ saved.fact.text }}</div>
+                <div class="fact-date">Збережено: {{ saved.saved_at|date:"d.m.Y H:i" }}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty">Ви ще не зберігали жодного факту.</div>
+    {% endif %}
 </div>
 </body>
 </html> 

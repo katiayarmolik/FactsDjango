@@ -4,64 +4,10 @@
     <meta charset="UTF-8">
     <title>Додати категорію</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-    <style>
-        body { background: #f6f8fa; font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; }
-        .container { max-width: 500px; margin: 60px auto; background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; text-align: center; }
-        h1 { color: #2d3748; font-size: 2em; margin-bottom: 24px; }
-        form { display: flex; flex-direction: column; gap: 18px; }
-        input[type="text"] { padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1em; }
-        button, input[type="submit"] { background: #3182ce; color: #fff; border: none; border-radius: 8px; padding: 12px; font-size: 1.1em; cursor: pointer; transition: background 0.2s; }
-        button:hover, input[type="submit"]:hover { background: #2563eb; }
-        .nav { margin-top: 32px; }
-        a { color: #3182ce; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        nav { text-align: right; margin-bottom: 24px; }
-        .dropdown { display: inline-block; position: relative; }
-        .dropbtn {
-            background: #3182ce;
-            color: #fff;
-            padding: 12px 24px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .dropbtn:hover, .dropbtn:focus { background: #2563eb; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: #fff;
-            min-width: 220px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            border-radius: 10px;
-            z-index: 1;
-            margin-top: 8px;
-        }
-        .dropdown-content a {
-            color: #2d3748;
-            padding: 14px 20px;
-            text-decoration: none;
-            display: block;
-            border-bottom: 1px solid #e2e8f0;
-            transition: background 0.2s;
-        }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background: #ebf8ff; color: #2b6cb0; }
-        .dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <div class="container">
-    <h1>Додати нову категорію</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Додати категорію">
-    </form>
     <nav>
         <div class="dropdown">
             <button class="dropbtn">Меню &#9662;</button>
@@ -75,6 +21,12 @@
             </div>
         </div>
     </nav>
+    <h1>Додати нову категорію</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Додати категорію">
+    </form>
 </div>
 </body>
 </html> 

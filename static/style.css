@@ -1,0 +1,212 @@
+/* Сучасний дизайн для Katia Facts App */
+:root {
+    --main-bg: #f4f7fa;
+    --main-bg-dark: #23272f;
+    --container-bg: #fff;
+    --container-bg-dark: #23272f;
+    --primary: #4f8cff;
+    --primary-dark: #1a73e8;
+    --accent: #ffb347;
+    --text: #23272f;
+    --text-dark: #f4f7fa;
+    --border: #e2e8f0;
+    --shadow: 0 4px 24px rgba(0,0,0,0.10);
+    --radius: 18px;
+    --transition: 0.2s;
+}
+
+body {
+    background: var(--main-bg);
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    min-height: 100vh;
+    transition: background var(--transition), color var(--transition);
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: var(--main-bg-dark);
+        color: var(--text-dark);
+    }
+    .container {
+        background: var(--container-bg-dark);
+        color: var(--text-dark);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .dropdown-content {
+        background: #23272f;
+    }
+    .dropdown-content a {
+        color: #f4f7fa;
+    }
+    .dropdown-content a:hover {
+        background: #2d3748;
+        color: var(--accent);
+    }
+}
+
+.container {
+    max-width: 700px;
+    margin: 60px auto;
+    background: var(--container-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 48px 32px 32px 32px;
+    text-align: center;
+    transition: background var(--transition), color var(--transition);
+}
+
+h1 {
+    color: var(--primary);
+    font-size: 2.3em;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+}
+
+nav {
+    text-align: right;
+    margin-bottom: 32px;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+.dropbtn {
+    background: var(--primary);
+    color: #fff;
+    padding: 14px 28px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--transition);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+}
+.dropbtn:hover, .dropbtn:focus {
+    background: var(--primary-dark);
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    min-width: 240px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    border-radius: var(--radius);
+    z-index: 2;
+    margin-top: 8px;
+    overflow: hidden;
+    animation: fadeIn 0.2s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.dropdown-content a {
+    color: var(--text);
+    padding: 16px 28px;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.08em;
+    transition: background var(--transition), color var(--transition);
+}
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover {
+    background: var(--accent);
+    color: #23272f;
+}
+.dropdown:hover .dropdown-content, .dropdown:focus-within .dropdown-content {
+    display: block;
+}
+
+/* Картки фактів, категорій, saved */
+.fact, .fact-block, .category-block {
+    background: #f0f4fa;
+    border-radius: var(--radius);
+    padding: 22px 28px;
+    margin: 18px 0;
+    font-size: 1.18em;
+    color: #23272f;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.04);
+    text-align: left;
+    transition: background var(--transition), color var(--transition);
+}
+@media (prefers-color-scheme: dark) {
+    .fact, .fact-block, .category-block {
+        background: #2d3748;
+        color: #f4f7fa;
+    }
+}
+.category {
+    display: inline-block;
+    background: var(--accent);
+    color: #23272f;
+    border-radius: 8px;
+    padding: 7px 18px;
+    font-size: 1em;
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"], input[type="password"], textarea, select {
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 1.08em;
+    margin-bottom: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #f8fafc;
+    transition: border var(--transition), background var(--transition);
+}
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
+    border: 1.5px solid var(--primary);
+    background: #fff;
+    outline: none;
+}
+button, input[type="submit"] {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 13px 0;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background var(--transition);
+    font-weight: 600;
+    margin-top: 8px;
+}
+button:hover, input[type="submit"]:hover {
+    background: var(--primary-dark);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    margin: 12px 0;
+}
+
+.empty, .error {
+    color: #e53e3e;
+    font-size: 1.1em;
+    margin: 32px 0;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 18px 4vw 18px 4vw;
+    }
+    .dropdown-content {
+        min-width: 90vw;
+        right: -20vw;
+    }
+    h1 { font-size: 1.3em; }
+} 

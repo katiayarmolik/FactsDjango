@@ -18,13 +18,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
 from facts.views import random_fact
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', random_fact, name='home'),
     path('admin/', admin.site.urls),
     path('facts/', include('facts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', random_fact, name='home'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 def custom_page_not_found(request, exception):
     return redirect('/facts/random/')
