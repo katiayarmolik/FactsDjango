@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Всі факти</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+    function vote(factId, type) {
+        fetch(`/facts/${type}/${factId}/`, {method: 'POST', headers: {'X-CSRFToken': '{{ csrf_token }}'}})
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('rating-' + factId).innerText = data.rating;
+            });
+    }
+    </script>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">Меню &#9662;</button>
+            <div class="dropdown-content">
+                <a href="/">Головна</a>
+                <a href="/facts/random/">Рандомний факт</a>
+                <a href="/facts/all/">Всі факти</a>
+                <a href="/facts/categories/">Категорії</a>
+                <a href="/facts/add/">Додати факт</a>
+                <a href="/facts/add-category/">Додати категорію</a>
+                <a href="/facts/saved/">Збережені факти</a>
+            </div>
+        </div>
+    </nav>
+    <h1>Всі факти</h1>
+    <form method="get" style="margin-bottom: 24px;">
+        <select name="category" onchange="this.form.submit()">
+            <option value="">Всі категорії</option>
+            {% for cat in categories %}
+                <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>{{ cat.name }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    {% for fact in facts %}
+        <div class="fact-block">
+            <div class="fact-text">{{ fact.text }}</div>
+            <div class="category">Категорія: {{ fact.category.name }}</div>
+            <div style="margin-top: 10px;">
+                <button onclick="vote({{ fact.id }}, 'upvote')">👍</button>
+                <span id="rating-{{ fact.id }}">{{ fact.rating }}</span>
+                <button onclick="vote({{ fact.id }}, 'downvote')">👎</button>
+            </div>
+        </div>
+    {% empty %}
+        <div class="empty">Фактів не знайдено.</div>
+    {% endfor %}
+</div>
+</body>
+</html> 

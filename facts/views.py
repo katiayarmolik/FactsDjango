@@ -5,6 +5,8 @@ import random
 from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.http import require_POST
+from django.http import JsonResponse
 
 
 def random_fact(request):
@@ -70,3 +72,27 @@ def add_category(request):
     else:
         form = CategoryForm()
     return render(request, 'add_category.html', {'form': form})
+
+
+def all_facts(request):
+    category_id = request.GET.get('category')
+    selected_category = int(category_id) if category_id and category_id.isdigit() else None
+    if selected_category:
+        facts = Fact.objects.filter(category_id=selected_category)
+    else:
+        facts = Fact.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'all_facts.html', {'facts': facts, 'categories': categories, 'selected_category': selected_category})
+
+
+def upvote_fact(request, fact_id):
+    fact = get_object_or_404(Fact, id=fact_id)
+    fact.rating = getattr(fact, 'rating', 0) + 1
+    fact.save()
+    return JsonResponse({'rating': fact.rating})
+
+def downvote_fact(request, fact_id):
+    fact = get_object_or_404(Fact, id=fact_id)
+    fact.rating = getattr(fact, 'rating', 0) - 1
+    fact.save()
+    return JsonResponse({'rating': fact.rating})

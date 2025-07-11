@@ -12,6 +12,7 @@ class Category(models.Model):
 class Fact(models.Model):
     text = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='facts')
+    rating = models.IntegerField(default=0)
 
     def __str__(self):
         return self.text[:50]

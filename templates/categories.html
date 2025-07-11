@@ -8,19 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <nav>
-        <div class="dropdown">
-            <button class="dropbtn">Меню &#9662;</button>
-            <div class="dropdown-content">
-                <a href="/">Головна</a>
-                <a href="/facts/random/">Рандомний факт</a>
-                <a href="/facts/categories/">Категорії</a>
-                <a href="/facts/add/">Додати факт</a>
-                <a href="/facts/add-category/">Додати категорію</a>
-                <a href="/facts/saved/">Збережені факти</a>
-            </div>
-        </div>
-    </nav>
+    {% include 'header.html' %}
     <h1>📚 Категорії фактів</h1>
     {% if categories %}
         <ul>
